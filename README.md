@@ -12,20 +12,20 @@ The default configuration tries to connect to the following postgresql database:
 `postgresql://blackpool:blackpool@localhost:5432/blackpool`
 
 ```bash
--$ git clone git://github.com/judu/jee-request-counter-demo.git
--$ cd jee-request-counter-demo
--$ mvn package
--$ {glassfish_home}/bin/asadmin start-domain
- Waiting for domain1 to start ....
- Successfully started the domain : domain1
- domain  Location: {glassfish_home}/glassfish/domains/domain1
- Log File: {glassfish_home}/glassfish/domains/domain1/logs/server.log
- Admin Port: 4848
- Command start-domain executed successfully.
+ -$ git clone git://github.com/judu/jee-request-counter-demo.git
+ -$ cd jee-request-counter-demo
+ -$ mvn package
+ -$ {glassfish_home}/bin/asadmin start-domain
+Waiting for domain1 to start ....
+Successfully started the domain : domain1
+domain  Location: {glassfish_home}/glassfish/domains/domain1
+Log File: {glassfish_home}/glassfish/domains/domain1/logs/server.log
+Admin Port: 4848
+Command start-domain executed successfully.
 
--$ {glassfish_home}/bin/asadmin deploy --name "request-counter-demo" --context "/foobar" target/demo-jee.war
- Application deployed with name request-counter-demo.
- Command deploy executed successfully.
+ -$ {glassfish_home}/bin/asadmin deploy --name "request-counter-demo" --context "/foobar" target/demo-jee.war
+Application deployed with name request-counter-demo.
+Command deploy executed successfully.
 ```
 
 ## How do I change the database config?

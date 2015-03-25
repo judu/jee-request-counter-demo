@@ -45,7 +45,7 @@ public class API {
       for (APIRequest apiRequest : arf.findAll()) {
          responseHTML += "<tr>";
          responseHTML += "<td>" + apiRequest.getId().toString() + "</td>";
-         responseHTML += "<td>" + apiRequest.getId() + "</td>";
+         responseHTML += "<td>" + apiRequest.getIp() + "</td>";
          responseHTML += "<td>" + apiRequest.getTimestamp().toString() + "</td>";
          responseHTML += "</tr>";
       }

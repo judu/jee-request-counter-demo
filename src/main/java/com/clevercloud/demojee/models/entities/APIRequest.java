@@ -1,7 +1,9 @@
 package com.clevercloud.demojee.models.entities;
 
+import org.eclipse.persistence.annotations.Convert;
+import org.eclipse.persistence.annotations.Converter;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.UUID;
 
@@ -13,7 +15,8 @@ import java.util.UUID;
 public class APIRequest {
    @Id
    @Column(columnDefinition = "uuid")
-   @org.hibernate.annotations.Type(type = "org.hibernate.type.PostgresUUIDType")
+   @Converter(name="uuidConverter", converterClass = com.clevercloud.demojee.models.util.UUIDConverter.class)
+   @Convert("uuidConverter")
    private UUID id;
    @Column(name = "source_ip", nullable = false)
    private String ip;
@@ -27,6 +30,7 @@ public class APIRequest {
    }
 
    public APIRequest(String ip) {
+      this();
       this.ip = ip;
    }
 

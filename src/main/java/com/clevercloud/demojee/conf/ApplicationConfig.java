@@ -1,6 +1,5 @@
 package com.clevercloud.demojee.conf;
 
-import org.glassfish.jersey.message.GZipEncoder;
 import org.glassfish.jersey.server.ResourceConfig;
 
 import javax.ws.rs.ApplicationPath;
@@ -11,7 +10,6 @@ import javax.ws.rs.ApplicationPath;
 @ApplicationPath("/")
 public class ApplicationConfig extends ResourceConfig {
    public ApplicationConfig() {
-      super(GZipEncoder.class);
-      packages("com.clevercloud.demojee.api");
+      packages("com.clevercloud.demojee");
    }
 }

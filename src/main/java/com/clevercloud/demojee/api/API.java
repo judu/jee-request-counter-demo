@@ -5,7 +5,7 @@ import com.clevercloud.demojee.models.entities.APIRequest;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -13,7 +13,7 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by judu on 25/03/15.
@@ -27,10 +27,18 @@ public class API {
    APIRequestFacade arf;
 
    @GET
-   public Response getCount(@Context ContainerRequestContext crc) {
+   public Response getCount(@Context ContainerRequestContext crc, @Context HttpServletRequest request) {
+      String remoteAddr = request.getRemoteAddr();
+      Logger.getAnonymousLogger().info("Remote addr is " + remoteAddr);
+
       final String forwardedfor = crc.getHeaderString("X-Forwarded-For");
       if(forwardedfor != null) {
-         APIRequest ar = new APIRequest(forwardedfor);
+         Logger.getAnonymousLogger().info("Found X-Forwarded-For " + forwardedfor + ". Use it instead of " + remoteAddr);
+         remoteAddr = forwardedfor;
+      }
+
+      if(remoteAddr != null) {
+         APIRequest ar = new APIRequest(remoteAddr);
          arf.create(ar);
       }
       String responseHTML = "<html><head><title>Requests</title></head><body><table><thead><tr><th>ID</th><th>IP</th><th>timestamp</th></thead><tbody>";
